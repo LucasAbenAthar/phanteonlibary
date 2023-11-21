@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS `biblioteca`;
+CREATE DATABASE IF NOT EXISTS `phanteon_libary`;
 
-USE `biblioteca`;
+USE `phanteon_libary`;
 
 CREATE TABLE categoria (
   id_categoria INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,

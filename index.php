@@ -1,114 +1,189 @@
-<!-- <?php
-  // require_once "config/config.php";
-
-  // if($_SERVER["REQUEST_METHOD"] == "POST") {
-  //   $name= $_POST["name"];
-  //   $password = $_POST["password"];
-  // }
-
-  // $sql = "SELECT * FROM users WHERE name= ?";
-
-  // $stmt = $conn->prepare($sql);
-  // $stmt -> bind_param("s", $name);
-  // $stmt -> execute();
-
-  // $result = $stmt -> get_result();
-
-  // if($result -> num_rows > 0){
-  //   $row = $result -> fetch_assoc();
-  //   if(password_verify($password, $row["password"])){
-  //     $_SESSION["loggedin"] = true;
-  //     header("location: login.php");
-  //     exit;
-  //   }
-  // }
-  // else{
-  //   $error = "Usuário ou senha inválidos";
-  // }
-
-?> -->
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="css/login.css">
-  <script src="https://kit.fontawesome.com/956e0f29ae.js" crossorigin="anonymous"></script>
-  <title>Login - Phanteon Library</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phanteon Libary</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <div class="background"></div>
-  <div class="container">
-    <div class="content">
-      <h2 class="logo">
-        <i class="fa-solid fa-book-open-reader"></i> Phanteon Library
-      </h2>
-      <div class="text-sci">
-        <h2>
-          Bem-vindo!<br><span>a Phanteon Library</span></br>
-        </h2>
-        <p>Por favor, entre ou registre-se para continuar.</p>
-        <div class="social-icons">
-          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href=""><i class="bi bi-mortarboard-fill"></i> Phanteon Library</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categoria
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="?page=categoria-listar">Listar</a></li>
+              <li><a class="dropdown-item" href="?page=categoria-cadastrar">Cadastrar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Livros
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="?page=livro-listar">Listar</a></li>
+              <li><a class="dropdown-item" href="?page=livro-cadastrar">Cadastrar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Funcionarios
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="?page=funcionario-listar">Listar</a></li>
+              <li><a class="dropdown-item" href="?page=funcionario-cadastrar">Cadastrar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Usuários
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="?page=usuario-listar">Listar</a></li>
+              <li><a class="dropdown-item" href="?page=usuario-cadastrar">Cadastrar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Emprestimo
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="?page=emprestimo-listar">Listar</a></li>
+              <li><a class="dropdown-item" href="?page=emprestimo-cadastrar">Cadastrar</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="box-busca">
+        <div class="search-box">
+          <form method="post" action="#">
+            <input type="text" class="search-box-input" name="busca" placeholder="Faça sua Pesquisa">
+            <button class="search-box-button"><i class="search-box-icone bi bi-search"></i></button>
+          </form>
         </div>
       </div>
     </div>
-    <div class="logreg-box">
-      <div class="form-box login">
-        <form action="login.php" method="POST">
-          <h2>Login</h2>
-          <div class="input-box">
-            <span class="icon"><i class="fa-solid fa-user"></i></span>
-            <input type="text" name='name' required>
-            <label>Usuário</label>
-          </div>
-          <div class="input-box">
-            <span class="icon"><i class="fa-solid fa-lock"></i></span>
-            <input type="password" name='password' required>
-            <label>Senha</label>
-          </div>
-          <div class="remember-forgot">
-            <label><input type="checkbox">Lembrar de mim</label>
-            <div>
-              <a href="forgot.php">Esqueceu sua senha?</a>
-            </div>
-          </div>
-          <button type="submit" class="btn">Entrar</button>
-          <div class="register-link">
-            <p>Ainda não possui uma conta? <a href="#" class="register-link">Criar Conta</a></p>
-          </div>
-        </form>
-      </div>
-      <div class="form-box register">
-        <form action="cadastro.php" method="POST">
-          <h2>Criar Conta</h2>
-          <div class="input-box">
-            <span class="icon"><i class="fa-solid fa-user"></i></span>
-            <input type="text" name='name' required>
-            <label>Nome de Usuário</label>
-          </div>
-          <div class="input-box">
-            <span class="icon"><i class="fa-solid fa-lock"></i></span>
-            <input type="password" name='password' required>
-            <label>Senha</label>
-          </div>
-          <div class="remember-forgot">
-            <label><input type="checkbox" required>Eu concordo com os termos & condições</label>
-          </div>
-          <button type="submit" class="btn">Criar Conta</button>
-          <div class="login-link">
-            <p>Ja possui uma conta? <a href="#" class="login-link">Login</a></p>
-          </div>
-        </form>
+  </nav>
+
+  <div class="conteiner mt">
+    <div class="row">
+      <div class="col">
+        <?php
+                    include("config.php");
+
+                    switch (@$_REQUEST['page']){
+                        //Categoria
+                        case 'categoria-listar':
+                            include('categoria-listar.php');
+                            break;
+
+                        case 'categoria-cadastrar':
+                            include('categoria-cadastrar.php');
+                            break;
+
+                        case 'categoria-editar':
+                            include('categoria-editar.php');
+                            break;
+
+                        case 'categoria-salvar':
+                            include('categoria-salvar.php');
+                            break;
+
+                            //Livro
+                        case 'livro-listar':
+                            include('livro-listar.php');
+                            break;
+
+                        case 'livro-cadastrar':
+                            include('livro-cadastrar.php');
+                            break;
+
+                        case 'livro-editar':
+                            include('livro-editar.php');
+                            break;
+
+                        case 'livro-salvar':
+                            include('livro-salvar.php');
+                            break;
+
+                             //funcionario
+                        case 'funcionario-listar':
+                            include('funcionario-listar.php');
+                            break;
+
+                        case 'funcionario-cadastrar':
+                            include('funcionario-cadastrar.php');
+                            break;
+
+                        case 'funcionario-editar':
+                            include('funcionario-editar.php');
+                            break;
+
+                        case 'funcionario-salvar':
+                            include('funcionario-salvar.php');
+                            break;
+
+                             //Usuarios
+                        case 'usuario-listar':
+                            include('usuarios-listar.php');
+                            break;
+
+                        case 'usuario-cadastrar':
+                            include('usuarios-cadastrar.php');
+                            break;
+
+                        case 'usuario-editar':
+                            include('usuarios-editar.php');
+                            break;
+
+                        case 'usuario-salvar':
+                            include('usuarios-salvar.php');
+                            break;
+
+                             //Emprestimo
+                        case 'emprestimo-listar':
+                            include('emprestimo-listar.php');
+                            break;
+
+                        case 'emprestimo-cadastrar':
+                            include('emprestimo-cadastrar.php');
+                            break;
+
+                        case 'emprestimo-editar':
+                            include('emprestimo-editar.php');
+                            break;
+
+                        case 'emprestimo-salvar':
+                            include('emprestimo-salvar.php');
+                            break;
+
+                        default:
+                              include("home.php");
+                        }
+                ?>
       </div>
     </div>
   </div>
-  <script src="js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+  </script>
 </body>
 
 </html>
